@@ -104,10 +104,10 @@ $(function() {
          * function is called and completes its work, there is at least
          * a single .entry element within the .feed container.
          */
-        it('should have at least one element in .feed container', function(done) {
-            const entries = $('.feed').children()
+        it('should have at least one .entry element in .feed container', function(done) {
+            const entries = $('.feed .entry')
             expect(entries.length).not.toBe(0);
-            done();
+            done()
         });
     });
 
@@ -123,9 +123,9 @@ $(function() {
         let secondFeed
         beforeAll(function(done) { 
             loadFeed(0, function() {
-                firstFeed = $('.feed').children()
+                firstFeed = $('.feed').children().text()
                 loadFeed(1, function() {
-                    secondFeed = $('.feed').children()
+                    secondFeed = $('.feed').children().text()
                     done();
                 })
             })
@@ -135,7 +135,9 @@ $(function() {
          * by the loadFeed function that the content actually changes.
          */
         it('should not be the same as previous', function(done) {
-            expect(firstFeed === secondFeed).toBe(false);
+            console.log(firstFeed)
+            console.log(secondFeed)
+            expect(firstFeed).not.toBe(secondFeed);
             done();
         });
 
